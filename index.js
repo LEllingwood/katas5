@@ -14,6 +14,7 @@ function testReverseWord() {
     })
 }
 testReverseWord("Tornado")
+testReverseWord("Ornadot")
 
 // 2. Reverse a sentence ("bob likes dogs" -> "dogs likes bob")
 function reverseString(str) {
@@ -32,6 +33,7 @@ function testReverseString() {
     // console.log(testReverseString("do to things"));
 }
 testReverseString("do to things")
+testReverseString("to do things")
 
 // 3. Find the minimum value in an array
 function arrayMin(arr) {
@@ -108,6 +110,7 @@ function testModulo(num1, num2) {
     })
 }
 testModulo(6, 2)
+testModulo(3, 2)
 
 // 6. Return distinct values from a list including duplicates (i.e. "1 3 5 3 7 3 1 1 5" -> "1 3 5 7")
 function countNumbers(duplicates) {
@@ -135,6 +138,7 @@ function testCountNumbers(duplicates) {
     })
 }
 testCountNumbers("4 4 2 9 8 8 9")
+testCountNumbers("4 2 7 9 9")
 
 // 7. Return distinct values and their counts (i.e. the list above becomes "1(3) 3(3) 5(2) 7(1)")
 function countNumbersWithCounts(duplicates) {
@@ -162,6 +166,7 @@ function testCountNumbersWithCounts(duplicates) {
     })
 }
 testCountNumbersWithCounts("2 2 2 4 4 9")
+testCountNumbersWithCounts("2 2 2 2 4 9 9")
 
 // 8. Given a string of expressions (only variables, +, and -) and an object describing a set of variable/value pairs like {a: 1, b: 7, c: 3, d: 14}, return the result of the expression ("a + b+c -d" would be -3).
 
@@ -187,4 +192,5 @@ function testEndResult (){
     })
 }
 testEndResult(1, 7, 3, 14)
+testEndResult(1, 7, 3, 12)
    
