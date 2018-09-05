@@ -4,12 +4,23 @@ function reverse(word) {
 }
 console.log(reverse("turd"))
 
+// test for kata(1)
+function testReverseWord() {
+    let result = "odanroT"
+    console.assert(result === "odanroT", {
+    "function": reverse("Tornado"),
+    "expected": "odanroT",
+    "result": result
+})
+}
+
 // 2. Reverse a sentence ("bob likes dogs" -> "dogs likes bob")
 function reverseString(str) {
     return str.split(" ").reverse().join(" ");
 }
 console.log(reverseString("rubber baby buggy bumpers"))
 
+// test of kata(2)
 function testReverseString() {
     let result = "do to things";
     console.assert(result === "do to things", {
@@ -17,7 +28,7 @@ function testReverseString() {
         "expected": "do to things",
         "result": result
     })
-    console.log(testReverseString("do to things"));
+    // console.log(testReverseString("do to things"));
 }
 
 // 3. Find the minimum value in an array
@@ -95,10 +106,18 @@ function countNumbersWithCounts(duplicates) {
 console.log(countNumbers("8 10 34 34 88 2 4"))
 
 // 8. Given a string of expressions (only variables, +, and -) and an object describing a set of variable/value pairs like {a: 1, b: 7, c: 3, d: 14}, return the result of the expression ("a + b+c -d" would be -3).
-// As an example, a unit test for the 8th kata might look like:
-// console.assert(evaluateExpression("a + b + c - d", {a: 1, b: 7, c: 3, d: 14}) === -3);
 
-function doMath(){
-    
+let katas5 = {
+    a: 1,
+    b: 7,
+    c: 3,
+    d: 14,
+    endResult: function () {
+        let value = Number(this.a + this.b + this.c - this.d);
+        return value;
+    }
 }
+console.log(katas5.endResult())
 
+// As an example, a unit test for the 8th kata might look like:
+console.assert(evaluateExpression("a + b + c - d", {a: 1, b: 7, c: 3, d: 14}) === -3);
