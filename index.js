@@ -4,61 +4,33 @@ function reverse(word) {
 }
 console.log(reverse("idiot"))
 
-// first test for kata1 (test reverse word)
-function testReverseWord(word) {
+function testReverseWord(word, reversedWord) {
     let result = reverse(word)
-    console.assert(result === "odanroT", {
-        "function": "reverse(word)",
-        "expected": "odanroT",
+    console.assert(result === reversedWord, {
+        "function": `reverse("${word}")`,
+        "expected": reversedWord,
         "result": result
     })
 }
-testReverseWord("Tornado")
-
-// function testReverseWord(){
-//     let result = reverse("Tornado")
-//     console.assert(result === "not expected")
-// }
-// testReverseWord("Tornado")
-
-// second test for kata1 (test reverse word)
-function testReverseWord2(word) {
-    let result = reverse(word)
-    console.assert(result === "odanroT", {
-        "function": "reverse(word)",
-        "expected": "odanroT",
-        "result": result
-    })
-}
-testReverseWord2("ornadoT")
+testReverseWord("Tornado", "odanroT")
+testReverseWord("Otto Rank", "knaR ottO")
 
 // 2. Reverse a sentence ("bob likes dogs" -> "dogs likes bob")
-function reverseString(str) {
+function reverseSentence(str) {
     return str.split(" ").reverse().join(" ");
 }
-console.log(reverseString("rubber baby buggy bumpers"))
+console.log(reverseSentence("rubber baby buggy bumpers"))
 
-// first test of kata2 (test reverse string)
-function testReverseString(str) {
-    let result = reverseString(str);
-    console.assert(result !== "do to things", {
-        "function": `reverseString("do to things")`,
-        "expected": "do to things",
+function testReverseSentence(sentence, reversedSentence) {
+    let result = reverseSentence(sentence);
+    console.assert(result === reversedSentence, {
+        "function": `reverseString("${sentence}")`,
+        "expected": reversedSentence,
         "result": result
     })
 }
-testReverseString("do to things")
-
-// second test of kata2 (test reverse string)
-function testReverseString1(str) {
-    let result = reverseString(str);
-    console.assert(result === "do to things", {
-        "function": `reverseString("do to things")`,
-        "expected": "do to things",
-        "result": result
-    })
-}
-testReverseString1("do to things")
+testReverseSentence("do to things", "things to do")
+testReverseSentence("Bob likes dogs.", "dogs. likes Bob")
 
 // 3. Find the minimum value in an array
 function arrayMin(arr) {
@@ -68,34 +40,20 @@ function arrayMin(arr) {
 }
 console.log(arrayMin([234, 623, 1, 7]))
 
-// 1st test for Kata3 (test arrayMin)
-//
-function testArrayMin(arr) {
+function testArrayMin(arr, minValue) {
     let result = arrayMin(arr)
-    console.assert(result === -1, {
+    console.assert(result === minValue, {
         "function": `arrayMin(${JSON.stringify(arr)})`,
-        "expected": -1,
+        "expected": minValue,
         "result": result
     })
 }
-testArrayMin([4, -1, 8, 9, 11])
-
-// 2nd test for Kata3 (test arrayMin)
-//
-function testArrayMin(arr) {
-    let result = arrayMin(arr)
-    console.assert(result !== 1, {
-        "function": `arrayMin(${JSON.stringify(arr)})`,
-        "expected": 1,
-        "result": result
-    })
-}
-testArrayMin([1, 109, 8, 9, 11])
+testArrayMin([4, -1, 8, 9, 11], -1)
+testArrayMin([1, 109, 8, 9, 11], 1)
 
 
 
 // 4. Find the maximum value in an array
-
 function arrayMax(arr) {
     return arr.reduce(function (p, v) {
         return (p > v ? p : v);
@@ -103,33 +61,22 @@ function arrayMax(arr) {
 }
 console.log(arrayMax([344, 2, 6, 88, 3888]))
 
-// first test for kata4 (test arrayMax)
-function testArrayMax(arr) {
+function testArrayMax(arr, maxValue) {
     let result = arrayMax(arr);
-    console.assert(result === 1466, {
+    console.assert(result === maxValue, {
         "function": `arrayMax(${JSON.stringify(arr)})`,
-        "expected": 1466,
+        "expected": maxValue,
         "result": result
     })
 }
-testArrayMax([4, 1466, 8, 9, 11])
-
-// second test for kata4 (test arrayMax)
-function testArrayMax(arr) {
-    let result = arrayMax(arr);
-    console.assert(result !== 146, {
-        "function": `arrayMax(${JSON.stringify(arr)})`,
-        "expected": 146,
-        "result": result
-    })
-}
-testArrayMax([4, 146, 8, 9, 11])
+testArrayMax([4, 1466, 8, 9, 11], 1466)
+testArrayMax([-53, 0, -100, -2, -1], 0)
 
 // // 5. Calculate a remainder (given a numerator and denominator)
 function modulo(num1, num2) {
-    // if (isNaN(num1) || isNaN(num2)) {
-    //     return NaN;
-    // }
+    if (isNaN(num1) || isNaN(num2)) {
+        return NaN;
+    }
     if (num1 === 0) {
         return 0;
     }
@@ -137,81 +84,55 @@ function modulo(num1, num2) {
         return NaN;
     }
 
-    var newNum1 = Math.abs(num1);
-    var newNum2 = Math.abs(num2);
+    const newNum1 = Math.abs(num1);
+    const newNum2 = Math.abs(num2);
 
-    var quotient = newNum1 - Math.floor(newNum1 / newNum2) * newNum2;
+    const quotient = newNum1 - Math.floor(newNum1 / newNum2) * newNum2;
 
-    if (num1 < 0) {
-        return -(quotient);
-    } else {
-        return quotient;
-    }
+    return (num1 < 0 ? -quotient : quotient)
 }
 console.log(modulo(6, 2))
 
-// first test for kata5 (test of calculate remainder)
-function testModulo(num1, num2) {
+function testModulo(num1, num2, remainder) {
     let result = modulo(num1, num2)
-    console.assert(result !== 1, {
+    console.assert(result === remainder, {
         "function": modulo(num1, num2),
-        "expected": 1,
+        "expected": remainder,
         "result": result
     })
 }
-testModulo(6, 2)
-
-// second test for kata5 (test of calculate remainder)
-function testModulo1(num1, num2) {
-    let result = modulo(num1, num2)
-    console.assert(result === 1, {
-        "function": modulo(num1, num2),
-        "expected": 1,
-        "result": result
-    })
-}
-testModulo(3, 2)
+testModulo(6, 2, 0)
+testModulo(3, 2, 1)
 
 // 6. Return distinct values from a list including duplicates (i.e. "1 3 5 3 7 3 1 1 5" -> "1 3 5 7")
-function countNumbers(duplicates) {
+function findDistinctNumbers(duplicates) {
     let res = duplicates.split(" ");
     let letterCounts = {};
     for (let i = 0; i < res.length; i++) {
         let currentLetter = res[i];
         if (letterCounts[currentLetter] === undefined) {
-            letterCounts[currentLetter] = 1;
-        } else {
-            letterCounts[currentLetter]++;
+            letterCounts[currentLetter] = true;
         }
     }
-    return letterCounts;
+    return Object.keys(letterCounts)
+        .sort((a, b) => a - b)
+        .join(" ")
 }
-console.log(countNumbers("4 5 3 7 9 3 3 29 4"))
+console.log(findDistinctNumbers("4 5 3 7 9 3 3 29 4"))
 
-// first test for kata6 (test of identifying duplicates)
-function testCountNumbers(duplicates) {
-    let result = countNumbers(duplicates)
-    console.assert(result !== "4 2 8 9", {
-        "function": countNumbers(duplicates),
-        "expected": "4 2 8 9",
+function testFindDistinctNumbers(duplicates, distinctNumbers) {
+    let result = findDistinctNumbers(duplicates)
+    console.assert(result === distinctNumbers, {
+        "function": `findDistinctNumbers(${JSON.stringify(duplicates)})`,
+        "expected": distinctNumbers,
         "result": result
     })
 }
-testCountNumbers("4 4 2 9 8 8 9")
-
-//  second test for kata6 (test of identifying duplicates)
-function testCountNumbers1(duplicates) {
-    let result = countNumbers(duplicates)
-    console.assert(result === "4 2 8 9", {
-        "function": countNumbers(duplicates),
-        "expected": "4 2 8 9",
-        "result": result
-    })
-}
-testCountNumbers1("4 2 7 9 9")
+testFindDistinctNumbers("4 4 2 9 8 8 9", "2 4 8 9")
+testFindDistinctNumbers("4 2 7 9 9", "2 4 7 9")
 
 // 7. Return distinct values and their counts (i.e. the list above becomes "1(3) 3(3) 5(2) 7(1)")
-function countNumbersWithCounts(duplicates) {
+function findNumberCounts(duplicates) {
     let res = duplicates.split(" ");
     let letterCounts = {};
     for (let i = 0; i < res.length; i++) {
@@ -222,35 +143,29 @@ function countNumbersWithCounts(duplicates) {
             letterCounts[currentLetter]++;
         }
     }
-    return letterCounts;
+    return Object.keys(letterCounts)
+        .sort((a, b) => a - b)
+        .reduce((result, num) => {
+            const newCount = `${num}(${letterCounts[num]}`;
+            return `${result ? result + " " : result}${newCount})`;
+        }, "");
 }
-console.log(countNumbers("8 10 34 34 88 2 4"))
+console.log(findNumberCounts("8 10 34 34 88 2 4"))
 
 // first test for kata7 (test of identifying duplicates with counts)
-function testCountNumbersWithCounts(duplicates) {
-    let result = countNumbersWithCounts(duplicates)
-    console.assert(result === "2: 3, 4: 2, 9: 1", {
-        "function": countNumbersWithCounts(duplicates),
-        "expected": "2: 3, 4: 2, 9: 1",
+function testFindNumberCounts(duplicates, expectedResult) {
+    let result = findNumberCounts(duplicates)
+    console.assert(result === expectedResult, {
+        "function": `findNumberCounts(${JSON.stringify(duplicates)})`,
+        "expected": expectedResult,
         "result": result
     })
 }
-testCountNumbersWithCounts("2 2 2 4 4 9")
-
-// second test for kata7 (test of identifying duplicates with counts)
-function testCountNumbersWithCounts1(duplicates) {
-    let result = countNumbersWithCounts(duplicates)
-    console.assert(result !== "2: 3, 4: 2, 9: 1", {
-        "function": countNumbersWithCounts(duplicates),
-        "expected": "2: 3, 4: 2, 9: 1",
-        "result": result
-    })
-}
-testCountNumbersWithCounts1("2 2 2 2 4 9 9")
+testFindNumberCounts("2 2 2 4 4 9", "2(3) 4(2) 9(1)")
+testFindNumberCounts("2 2 2 2 4 9 9", "2(4) 4(1) 9(2)")
 
 // 8. Given a string of expressions (only variables, +, and -) and an object describing a set of variable/value pairs like {a: 1, b: 7, c: 3, d: 14}, return the result of the expression ("a + b + c - d" would be -3).
-
-function endResult(expression, keyValuePair) {
+function evaluateExpression(expression, keyValuePair) {
     let sign = "+";
     let value = 0;
     let singleCharacters = expression.split(" ")
@@ -266,15 +181,13 @@ function endResult(expression, keyValuePair) {
     // check out james' solution to this one.
 }
 // first test for kata8 (give the result)
-function testEndResult(expression, keyValuePair, expectedOutcome) {
-    let result = endResult(expression, keyValuePair);
+function testEvaluateExpression(expression, keyValuePair, expectedOutcome) {
+    let result = evaluateExpression(expression, keyValuePair);
     console.assert(result === expectedOutcome, {
         "function": `endResult(${expression}, ${keyValuePair})`,
         "expected": expectedOutcome,
         "result": result
     })
 }
-testEndResult("a + b + c - d", {a: 1, b: 7, c: 3, d: 14}, -3)
-
-// second test for kata8 (give the result)
-testEndResult("- a - b + c + d", {a: 3, b: 4, c: 10, d: 5}, 8)
+testEvaluateExpression("a + b + c - d", {a: 1, b: 7, c: 3, d: 14}, -3)
+testEvaluateExpression("- a - b + c + d", {a: 3, b: 4, c: 10, d: 5}, 8)
